@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXO: Ligando você ao que mais importa</title>
     <link rel="stylesheet" href="scss/main.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
     <style>
         #hero-tablet {
@@ -215,8 +216,7 @@
                     </span><br>
                     <span class="fw-bold fs-5 mb-3">Ligando você ao que mais importa</span><br>
                     <span class="fw-semibold" data-bs-theme="dark">
-                        <a href="https://maps.app.goo.gl/VTBqsrJqayFvXoLv7"><i
-                                class="bi bi-geo-alt-fill text-white me-1"></i></a>
+                        <a href="#"><i class="bi bi-geo-alt-fill text-white me-1"></i></a>
                         Endereço fictício da empresa, 00000-000, São Paulo, SP</span>
                 </div>
                 <div class="col-3 text-end">
