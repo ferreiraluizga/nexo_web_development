@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/connect.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/connect.php'; //Importação única do arquivo, se existente
 
 class Produto{ //Classe publica
     private $Cod_Prod; //Variáveis 

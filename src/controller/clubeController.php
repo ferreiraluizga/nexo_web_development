@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/model/clube.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/model/clube.php';
 
 class ClubeController{
     private $clube;

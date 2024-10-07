@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController.php'; //Importação única do arquivo, se existente
 
 ?>
 

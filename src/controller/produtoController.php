@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/model/produto.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/model/produto.php'; //Importação única do arquivo, se existente
 
 
 class ProdutoController{ // Classe públic 

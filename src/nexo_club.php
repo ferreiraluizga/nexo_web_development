@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/clubeController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.php'; //Importação única do arquivo, se existente
 ?>
 
 <!DOCTYPE html>
