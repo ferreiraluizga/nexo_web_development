@@ -88,7 +88,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
         <!-- Sidebar -->
         <div class="d-none d-xl-block">
             <aside class="d-flex flex-column text-white bg-primary flex-shrink-0 p-3 shadow-lg position-fixed"
-                style="width: 15vw; height: 100vh;">
+                style="width: 17vw; height: 100vh;">
                 <a class="navbar-brand text-center" href="#" style="margin-bottom: 1vw; margin-top: 1vw;">
                     <img src="img/header_logo.svg" alt="Logo" height="55" class="d-inline-block align-text-top">
                 </a>
