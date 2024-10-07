@@ -71,7 +71,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                     data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-1" id="icon-menu"></i>
-                    <i class="bi bi-x text-white fs-1" id="icon-close"></i>
                 </button>
                 <div class="collapse mt-3" id="navbarCollapseContent">
                     <div class="navbar-nav col text-center text-sm-start">
@@ -179,8 +178,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                 <form class="d-flex" role="search" method="GET" action="dashboard.php">
                     <div class="input-group col-12 col-md-8 col-lg-6" style="min-width: 250px; max-width: 800px">
                         <input type="search" name="search" class="form-control" placeholder="<?php if (isset($_GET['search'])) {
-                            echo $_GET['search'];
-                        } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
+                                                                                                    echo $_GET['search'];
+                                                                                                } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
                             id="search">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
@@ -201,7 +200,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75"
                                     href="cadastrarproduto.php">Inserir registro</a>
                                 <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75" href="<?php if (isset($_GET['search'])) { ?> dashboard.php?acao=pdf&&search=<?php echo $_GET['search'];
-                                } else { ?>dashboard.php?acao=pdf<?php } ?>">Exportar
+                                                                                                                                                                        } else { ?>dashboard.php?acao=pdf<?php } ?>">Exportar
                                     PDF</a>
                             </div>
                         </div>
@@ -237,7 +236,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                             foreach ($listas as $lista) {
 
                                                 $categoriaNome = $categoriaMap[$lista['Cod_Categoria']];
-                                                ?>
+                                        ?>
                                                 <tr>
                                                     <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Prod']); ?>
                                                     </th>
@@ -288,7 +287,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                                         <a button class="btn btn-primary rounded-5 mb-2" type="button"
                                                             href="excluirproduto.php?Cod_Prod=<?php echo $produto['Cod_Prod']; ?>&acao=consultar">Excluir</button></a>
                                                     </th>
-                                                <?php }
+                                            <?php }
                                         } ?>
                                     </tbody>
                                     </thead>
@@ -346,7 +345,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                         $categoriaNome = $categoriaMap[$lista['Cod_Categoria']];
                                         $marcaNome = $marcaMap[$lista['Cod_Marca']];
                                         $fornecedorNome = $fornecedorMap[$lista['Cod_Forn']];
-                                        ?>
+                                ?>
                                         <tr>
                                             <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Prod']); ?></th>
                                             <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Prod']); ?></th>
@@ -392,7 +391,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                             <th class="fw-normal"><?php echo htmlspecialchars($marcaNome); ?></th>
                                             <th class="fw-normal"><?php echo htmlspecialchars($fornecedorNome); ?></th>
 
-                                        <?php }
+                                    <?php }
                                 } ?>
                             </tbody>
                             </thead>
@@ -403,19 +402,21 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
 
                 <?php
                 if (isset($_GET['acao']) && $_GET['acao'] == 'pdf') {
-                    ?>
+                ?>
                     <script>
-                        window.onload = function () {
+                        window.onload = function() {
                             $("#pdf").attr("hidden", false);
 
                             var pdf = document.getElementById('pdf');
                             var tabelaProduto = pdf.cloneNode(true);
 
                             if (tabelaProduto) {
-                                const { jsPDF } = window.jspdf;
+                                const {
+                                    jsPDF
+                                } = window.jspdf;
                                 var doc = new jsPDF('a4');
                                 doc.html(tabelaProduto, {
-                                    callback: function (doc) {
+                                    callback: function(doc) {
                                         var totalPages = doc.internal.getNumberOfPages();
 
                                         for (var i = 2; i <= totalPages; i++) {
@@ -426,7 +427,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                         }
                                         doc.save('Estoque.pdf');
                                         window.location.href = '<?php if (isset($_GET['search'])) { ?> dashboard.php?search=<?php echo $_GET['search'];
-                                        } else { ?>dashboard.php<?php } ?>';
+                                                                                                                        } else { ?>dashboard.php<?php } ?>';
                                     },
                                     x: 5,
                                     y: 10,
@@ -439,22 +440,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                             }
                         };
                     </script>
-                    <?php
+                <?php
                 }
                 ?>
 
-                <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-                <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
                 <script>
-                    $(document).ready(function () {
-                        $('[data-bs-toggle="collapse"]').on('click', function () {
+                    $(document).ready(function() {
+                        $('[data-bs-toggle="collapse"]').on('click', function() {
                             var targetId = $(this).attr('href');
                             var $target = $(targetId);
                             if ($target.hasClass('show')) {
                                 return;
                             }
-                            $('[data-bs-toggle="collapse"]').each(function () {
+                            $('[data-bs-toggle="collapse"]').each(function() {
                                 var otherTargetId = $(this).attr('href');
                                 var $otherTarget = $(otherTargetId);
 
@@ -468,6 +469,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                             var bsCollapse = new bootstrap.Collapse($target[0], {
                                 toggle: true
                             });
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function() {
+                        $('#navbarCollapseContent').on('shown.bs.collapse', function() {
+                            $('#icon-menu').removeClass('bi-list').addClass('bi-x');
+                        });
+                        $('#navbarCollapseContent').on('hidden.bs.collapse', function() {
+                            $('#icon-menu').removeClass('bi-x').addClass('bi-list');
                         });
                     });
                 </script>

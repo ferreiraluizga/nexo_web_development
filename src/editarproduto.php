@@ -72,7 +72,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                     data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-1" id="icon-menu"></i>
-                    <i class="bi bi-x text-white fs-1" id="icon-close"></i>
                 </button>
                 <div class="collapse mt-3" id="navbarCollapseContent">
                     <div class="navbar-nav col text-center text-sm-start">
@@ -180,8 +179,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                 <form class="d-flex" role="search" method="GET" action="dashboard.php">
                     <div class="input-group col-12 col-md-8 col-lg-6" style="min-width: 250px; max-width: 800px">
                         <input type="search" name="search" class="form-control" placeholder="<?php if (isset($_GET['search'])) {
-                            echo $_GET['search'];
-                        } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
+                                                                                                    echo $_GET['search'];
+                                                                                                } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
                             id="search">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
@@ -247,12 +246,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $fornecedores = $produtoController->fornecedor();
                                 foreach ($fornecedores as $fornecedor) {
                                     if ($fornecedor['Cod_Forn'] != $produtos['Cod_Forn']) {
-                                        ?>
+                                ?>
                                         <option value="<?php echo $fornecedor['Cod_Forn'] ?>">
                                             <?php echo $fornecedor['Nome_Fantasia'] ?>
                                         </option>
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
@@ -273,11 +272,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $marcas = $produtoController->marca();
                                 foreach ($marcas as $marca) {
                                     if ($marca['Cod_Marca'] != $produtos['Cod_Marca']) {
-                                        ?>
+                                ?>
                                         <option value="<?php echo $marca['Cod_Marca'] ?>"><?php echo $marca['Nome_Marca'] ?>
                                         </option>
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
@@ -298,12 +297,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $categorias = $produtoController->categoria();
                                 foreach ($categorias as $categoria) {
                                     if ($categoria['Cod_Categoria'] != $produtos['Cod_Categoria']) {
-                                        ?>
+                                ?>
                                         <option value="<?php echo $categoria['Cod_Categoria'] ?>">
                                             <?php echo $categoria['Nome_Categoria'] ?>
                                         </option>
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
@@ -323,14 +322,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
             <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                $(document).ready(function () {
-                    $('[data-bs-toggle="collapse"]').on('click', function () {
+                $(document).ready(function() {
+                    $('[data-bs-toggle="collapse"]').on('click', function() {
                         var targetId = $(this).attr('href');
                         var $target = $(targetId);
                         if ($target.hasClass('show')) {
                             return;
                         }
-                        $('[data-bs-toggle="collapse"]').each(function () {
+                        $('[data-bs-toggle="collapse"]').each(function() {
                             var otherTargetId = $(this).attr('href');
                             var $otherTarget = $(otherTargetId);
 
@@ -344,6 +343,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                         var bsCollapse = new bootstrap.Collapse($target[0], {
                             toggle: true
                         });
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $('#navbarCollapseContent').on('shown.bs.collapse', function() {
+                        $('#icon-menu').removeClass('bi-list').addClass('bi-x');
+                    });
+                    $('#navbarCollapseContent').on('hidden.bs.collapse', function() {
+                        $('#icon-menu').removeClass('bi-x').addClass('bi-list');
                     });
                 });
             </script>
