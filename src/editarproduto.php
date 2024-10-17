@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php'; //Importação única do arquivo, se existente
 
 ?>
 
@@ -16,16 +16,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="scss/main.css">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 
-<body style="background-color: #F2F2F2;">
+
+</head><body style="background-color: #F2F2F2;">
     <header class="sticky-top mb-0 d-xl-none">
         <nav class="navbar navbar-expand-lg bg-primary py-3 shadow-lg" data-bs-theme="dark">
             <div class="container align-items-center fw-semibold">
                 <div class="navbar-nav col-4 d-none d-lg-flex justify-content-around align-items-center">
                     <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
-                    <a class="nav-link" aria-current="page" href="#">Fornecedores</a>
+                    <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
                 </div>
                 <div class="col-4 text-center">
                     <a class="navbar-brand" href="index.php">
@@ -33,8 +33,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                     </a>
                 </div>
                 <div class="navbar-nav col-4 d-none d-lg-flex justify-content-around align-items-center">
-                    <a class="nav-link" aria-current="page" href="#">Marcas</a>
-                    <a class="nav-link" aria-current="page" href="#">Categorias</a>
+                    <a class="nav-link " aria-current="page" href="marca.php">Marcas</a>
+                    <a class="nav-link " aria-current="page" href="categoira.php">Categorias</a>
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://via.placeholder.com/40" alt="profile" width="40" height="40"
@@ -72,13 +72,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                     data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-1" id="icon-menu"></i>
+                    <i class="bi bi-x text-white fs-1" id="icon-close"></i>
                 </button>
                 <div class="collapse mt-3" id="navbarCollapseContent">
                     <div class="navbar-nav col text-center text-sm-start">
                         <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
-                        <a class="nav-link" aria-current="page" href="#">Fornecedores</a>
-                        <a class="nav-link" aria-current="page" href="#">Marcas</a>
-                        <a class="nav-link" aria-current="page" href="#">Categorias</a>
+                        <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
+                        <a class="nav-link" aria-current="page" href="marca.php">Marcas</a>
+                        <a class="nav-link" aria-current="page" href="categoria.php">Categorias</a>
                     </div>
                 </div>
             </div>
@@ -89,7 +90,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
         <!-- Sidebar -->
         <div class="d-none d-xl-block">
             <aside class="d-flex flex-column text-white bg-primary flex-shrink-0 p-3 shadow-lg position-fixed"
-                style="width: 17vw; height: 100vh;">
+                style="width: 15vw; height: 100vh;">
                 <a class="navbar-brand text-center" href="#" style="margin-bottom: 1vw; margin-top: 1vw;">
                     <img src="img/header_logo.svg" alt="Logo" height="55" class="d-inline-block align-text-top">
                 </a>
@@ -138,8 +139,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                         </a>
                         <div class="collapse" id="fornSubMenu">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
-                                <li><a href="#" class="nav-link text-white">Cadastrar Fornecedor</a></li>
-                                <li><a href="#" class="nav-link text-white">Consultar Fornecedores</a></li>
+                                <li><a href="cadastrarfornecedor.php" class="nav-link text-white">Cadastrar Fornecedor</a></li>
+                                <li><a href="fornecedor.php" class="nav-link text-white">Consultar Fornecedores</a></li>
                             </ul>
                         </div>
                     </li>
@@ -150,8 +151,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                         </a>
                         <div class="collapse" id="brandsSubMenu">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
-                                <li><a href="#" class="nav-link text-white">Cadastrar Marca</a></li>
-                                <li><a href="#" class="nav-link text-white">Consultar Marcas</a></li>
+                                <li><a href="cadastrarmarca.php" class="nav-link text-white">Cadastrar Marca</a></li>
+                                <li><a href="marca.php" class="nav-link text-white">Consultar Marcas</a></li>
                             </ul>
                         </div>
                     </li>
@@ -162,15 +163,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                         </a>
                         <div class="collapse" id="filtersSubMenu">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-4 small">
-                                <li><a href="#" class="nav-link text-white">Cadastrar Categoria</a></li>
-                                <li><a href="#" class="nav-link text-white">Consultar Categorias</a></li>
+                                <li><a href="cadastrarcategoria.php" class="nav-link text-white">Cadastrar Categoria</a></li>
+                                <li><a href="categoria.php" class="nav-link text-white">Consultar Categorias</a></li>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </aside>
         </div>
-
 
         <!-- Content -->
 
@@ -179,8 +179,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                 <form class="d-flex" role="search" method="GET" action="dashboard.php">
                     <div class="input-group col-12 col-md-8 col-lg-6" style="min-width: 250px; max-width: 800px">
                         <input type="search" name="search" class="form-control" placeholder="<?php if (isset($_GET['search'])) {
-                                                                                                    echo $_GET['search'];
-                                                                                                } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
+                            echo $_GET['search'];
+                        } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
                             id="search">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
@@ -246,12 +246,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $fornecedores = $produtoController->fornecedor();
                                 foreach ($fornecedores as $fornecedor) {
                                     if ($fornecedor['Cod_Forn'] != $produtos['Cod_Forn']) {
-                                ?>
+                                        ?>
                                         <option value="<?php echo $fornecedor['Cod_Forn'] ?>">
                                             <?php echo $fornecedor['Nome_Fantasia'] ?>
                                         </option>
 
-                                <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -272,11 +272,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $marcas = $produtoController->marca();
                                 foreach ($marcas as $marca) {
                                     if ($marca['Cod_Marca'] != $produtos['Cod_Marca']) {
-                                ?>
+                                        ?>
                                         <option value="<?php echo $marca['Cod_Marca'] ?>"><?php echo $marca['Nome_Marca'] ?>
                                         </option>
 
-                                <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -297,12 +297,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                                 $categorias = $produtoController->categoria();
                                 foreach ($categorias as $categoria) {
                                     if ($categoria['Cod_Categoria'] != $produtos['Cod_Categoria']) {
-                                ?>
+                                        ?>
                                         <option value="<?php echo $categoria['Cod_Categoria'] ?>">
                                             <?php echo $categoria['Nome_Categoria'] ?>
                                         </option>
 
-                                <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -322,14 +322,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
             <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                $(document).ready(function() {
-                    $('[data-bs-toggle="collapse"]').on('click', function() {
+                $(document).ready(function () {
+                    $('[data-bs-toggle="collapse"]').on('click', function () {
                         var targetId = $(this).attr('href');
                         var $target = $(targetId);
                         if ($target.hasClass('show')) {
                             return;
                         }
-                        $('[data-bs-toggle="collapse"]').each(function() {
+                        $('[data-bs-toggle="collapse"]').each(function () {
                             var otherTargetId = $(this).attr('href');
                             var $otherTarget = $(otherTargetId);
 
@@ -343,16 +343,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController
                         var bsCollapse = new bootstrap.Collapse($target[0], {
                             toggle: true
                         });
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function() {
-                    $('#navbarCollapseContent').on('shown.bs.collapse', function() {
-                        $('#icon-menu').removeClass('bi-list').addClass('bi-x');
-                    });
-                    $('#navbarCollapseContent').on('hidden.bs.collapse', function() {
-                        $('#icon-menu').removeClass('bi-x').addClass('bi-list');
                     });
                 });
             </script>

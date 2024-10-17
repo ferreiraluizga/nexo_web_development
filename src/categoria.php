@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/categoriaController.php'; //Importação única do arquivo, se existente
 ?>
 
 <!DOCTYPE html>
@@ -17,13 +17,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
     <link rel="stylesheet" href="scss/main.css">
 </head>
 
-
-</head><body style="background-color: #F2F2F2;">
+<body style="background-color: #F2F2F2;">
     <header class="sticky-top mb-0 d-xl-none">
         <nav class="navbar navbar-expand-lg bg-primary py-3 shadow-lg" data-bs-theme="dark">
             <div class="container align-items-center fw-semibold">
                 <div class="navbar-nav col-4 d-none d-lg-flex justify-content-around align-items-center">
-                    <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
+                    <a class="nav-link" aria-current="page" href="dashboard.php">Produtos</a>
                     <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
                 </div>
                 <div class="col-4 text-center">
@@ -33,7 +32,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                 </div>
                 <div class="navbar-nav col-4 d-none d-lg-flex justify-content-around align-items-center">
                     <a class="nav-link " aria-current="page" href="marca.php">Marcas</a>
-                    <a class="nav-link " aria-current="page" href="categoira.php">Categorias</a>
+                    <a class="nav-link active" aria-current="page" href="categoira.php">Categorias</a>
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://via.placeholder.com/40" alt="profile" width="40" height="40"
@@ -75,10 +74,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                 </button>
                 <div class="collapse mt-3" id="navbarCollapseContent">
                     <div class="navbar-nav col text-center text-sm-start">
-                        <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
-                        <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
+                        <a class="nav-link" aria-current="page" href="dashboard.php">Produtos</a>
+                        <a class="nav-link" aria-current="page" href="fornecedor.php">Fornecedores</a>
                         <a class="nav-link" aria-current="page" href="marca.php">Marcas</a>
-                        <a class="nav-link" aria-current="page" href="categoria.php">Categorias</a>
+                        <a class="nav-link active" aria-current="page" href="categoria.php">Categorias</a>
                     </div>
                 </div>
             </div>
@@ -171,15 +170,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
             </aside>
         </div>
 
+
         <!-- Content -->
 
         <div class="responsive-div p-4 w-100">
             <div class="row mb-3" style="margin-left: 0.2vw; margin-top: 0.8vw;">
-                <form class="d-flex" role="search" method="GET" action="dashboard.php">
+                <form class="d-flex" role="search" method="GET" action="categoria.php">
                     <div class="input-group col-12 col-md-8 col-lg-6" style="min-width: 250px; max-width: 800px">
                         <input type="search" name="search" class="form-control" placeholder="<?php if (isset($_GET['search'])) {
                             echo $_GET['search'];
-                        } else { ?>Digite o nome do produto <?php } ?>" aria-label="search" aria-describedby="search"
+                        } else { ?>Digite o nome da categoria <?php } ?>" aria-label="search" aria-describedby="search"
                             id="search">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
@@ -194,13 +194,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                         <br>
                         <div class="row">
                             <div class="col" style="text-align: start;">
-                                <h3 class="card-title">Produtos</h3>
+                                <h3 class="card-title">Categorias</h3>
                             </div>
                             <div class="col d-flex justify-content-end">
                                 <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75"
-                                    href="cadastrarproduto.php">Inserir registro</a>
-                                <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75" href="<?php if (isset($_GET['search'])) { ?> dashboard.php?acao=pdf&&search=<?php echo $_GET['search'];
-                                } else { ?>dashboard.php?acao=pdf<?php } ?>">Exportar
+                                    href="cadastrarcategoria.php">Inserir registro</a>
+                                <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75" href="<?php if (isset($_GET['search'])) { ?> categoria.php?acao=pdf&&search=<?php echo $_GET['search'];
+                                } else { ?>categoria.php?acao=pdf<?php } ?>">Exportar
                                     PDF</a>
                             </div>
                         </div>
@@ -208,7 +208,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                     </div>
 
                     <!-- aqui coloca o conteúdo dos cards :) -->
-                    <div class="tabelaProduto" id="tabelaProduto">
+                    <div class="tabelaCategoria" id="tabelaCategoria">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table ">
@@ -216,9 +216,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                                         <tr>
                                             <th scope="col">Código</th>
                                             <th scope="col">Nome</th>
-                                            <th scope="col">Preço</th>
-                                            <th scope="col">Quantidade</th>
-                                            <th scope="col">Categoria</th>
+                                            <th scope="col">Descrição</th>
                                             <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
@@ -226,66 +224,40 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                                         <?php
                                         if (isset($_GET['search'])) {
                                             $search = $_GET['search'];
-                                            $produtoController = new ProdutoController();
-                                            $listas = $produtoController->buscar($search);
-                                            $categorias = $produtoController->categoria();
-                                            $categoriaMap = [];
-                                            foreach ($categorias as $categoria) {
-                                                $categoriaMap[$categoria['Cod_Categoria']] = $categoria['Nome_Categoria'];
-                                            }
+                                            $categoriaController = new CategoriaController();
+                                            $listas = $categoriaController->buscar($search);
                                             foreach ($listas as $lista) {
-
-                                                $categoriaNome = $categoriaMap[$lista['Cod_Categoria']];
                                                 ?>
                                                 <tr>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Preco_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Desc_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal">
-                                                        <?php echo htmlspecialchars($lista['Quant_Estoque']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoriaNome); ?></th>
                                                     <th>
                                                         <a class="btn btn-primary rounded-5 me-4 mb-2"
-                                                            href="editarproduto.php?acao=editar&Cod_Prod=<?php echo $lista['Cod_Prod']; ?>">Editar</a>
-                                                        <a class="btn btn-primary rounded-5 mb-2"
-                                                            href="excluirproduto.php?Cod_Prod=<?php echo $lista['Cod_Prod']; ?>&acao=consultar">Excluir</a>
+                                                            href="editarcategoria.php?acao=editar&Cod_Categoria=<?php echo $lista['Cod_Categoria']; ?>">Editar</a>
                                                     </th>
 
                                                 <?php }
                                         } else {
 
-                                            $produtoController = new ProdutoController();
-                                            $produtos = $produtoController->listar();
-                                            $categorias = $produtoController->categoria();
-                                            $categoriaMap = [];
+                                            $categoriaController = new CategoriaController();
+                                            $categorias = $categoriaController->listar();
+
                                             foreach ($categorias as $categoria) {
-                                                $categoriaMap[$categoria['Cod_Categoria']] = $categoria['Nome_Categoria'];
-                                            }
-
-                                            foreach ($produtos as $produto) {
-
-                                                $categoriaNome = $categoriaMap[$produto['Cod_Categoria']];
                                                 ?>
                                                 <tr>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($produto['Cod_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Cod_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($produto['Nome_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Nome_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal">
-                                                        <?php echo htmlspecialchars($produto['Preco_Prod']); ?>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Desc_Categoria']); ?>
                                                     </th>
-                                                    <th class="fw-normal">
-                                                        <?php echo htmlspecialchars($produto['Quant_Estoque']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoriaNome); ?></th>
-                                                    <th><a button class="btn btn-primary rounded-5 me-4 mb-2" type="button"
-                                                            href="editarproduto.php?acao=editar&Cod_Prod=<?php echo $produto['Cod_Prod']; ?>">Editar</button></a>
-                                                        <a button class="btn btn-primary rounded-5 mb-2" type="button"
-                                                            href="excluirproduto.php?Cod_Prod=<?php echo $produto['Cod_Prod']; ?>&acao=consultar">Excluir</button></a>
+                                                    <th>
+                                                        <a class="btn btn-primary rounded-5 me-4 mb-2"
+                                                            href="editarcategoria.php?acao=editar&Cod_Categoria=<?php echo $categoria['Cod_Categoria']; ?>">Editar</a>
                                                     </th>
                                                 <?php }
                                         } ?>
@@ -307,97 +279,52 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
 
                 <div class="pdf" id="pdf" hidden>
                 <p><strong>NEXO</strong></p>
-                <p>Produtos</p>
+                <p>Categorias</p>
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Código</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Preço</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Marca</th>
-                                    <th scope="col">Fornecedor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if (isset($_GET['search'])) {
-                                    $search = $_GET['search'];
-                                    $produtoController = new ProdutoController();
-                                    $listas = $produtoController->buscar($search);
-                                    $categorias = $produtoController->categoria();
-                                    $categoriaMap = [];
-                                    $marcas = $produtoController->marca();
-                                    $marcaMap = [];
-                                    $fornecedores = $produtoController->fornecedor();
-                                    $fornecedorMap = [];
-                                    foreach ($categorias as $categoria) {
-                                        $categoriaMap[$categoria['Cod_Categoria']] = $categoria['Nome_Categoria'];
-                                    }
-                                    foreach ($marcas as $marca) {
-                                        $marcaMap[$marca['Cod_Marca']] = $marca['Nome_Marca'];
-                                    }
-                                    foreach ($fornecedores as $fornecedor) {
-                                        $fornecedorMap[$fornecedor['Cod_Forn']] = $fornecedor['Nome_Fantasia'];
-                                    }
-                                    foreach ($listas as $lista) {
-
-                                        $categoriaNome = $categoriaMap[$lista['Cod_Categoria']];
-                                        $marcaNome = $marcaMap[$lista['Cod_Marca']];
-                                        $fornecedorNome = $fornecedorMap[$lista['Cod_Forn']];
-                                        ?>
+                    <table class="table ">
+                                    <thead>
                                         <tr>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($lista['Preco_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($lista['Quant_Estoque']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($categoriaNome); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($marcaNome); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($fornecedorNome); ?></th>
-                                        <?php }
-                                } else {
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (isset($_GET['search'])) {
+                                            $search = $_GET['search'];
+                                            $categoriaController = new CategoriaController();
+                                            $listas = $categoriaController->buscar($search);
+                                            foreach ($listas as $lista) {
+                                                ?>
+                                                <tr>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Categoria']); ?>
+                                                    </th>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Categoria']); ?>
+                                                    </th>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Desc_Categoria']); ?>
+                                                    </th>
 
-                                    $produtoController = new ProdutoController();
-                                    $produtos = $produtoController->listar();
-                                    $categorias = $produtoController->categoria();
-                                    $categoriaMap = [];
-                                    $marcas = $produtoController->marca();
-                                    $marcaMap = [];
-                                    $fornecedores = $produtoController->fornecedor();
-                                    $fornecedorMap = [];
-                                    foreach ($categorias as $categoria) {
-                                        $categoriaMap[$categoria['Cod_Categoria']] = $categoria['Nome_Categoria'];
-                                    }
-                                    foreach ($marcas as $marca) {
-                                        $marcaMap[$marca['Cod_Marca']] = $marca['Nome_Marca'];
-                                    }
-                                    foreach ($fornecedores as $fornecedor) {
-                                        $fornecedorMap[$fornecedor['Cod_Forn']] = $fornecedor['Nome_Fantasia'];
-                                    }
+                                                <?php }
+                                        } else {
 
-                                    foreach ($produtos as $produto) {
+                                            $categoriaController = new CategoriaController();
+                                            $categorias = $categoriaController->listar();
 
-                                        $categoriaNome = $categoriaMap[$produto['Cod_Categoria']];
-                                        $marcaNome = $marcaMap[$produto['Cod_Marca']];
-                                        $fornecedorNome = $fornecedorMap[$produto['Cod_Forn']];
-                                        ?>
-                                        <tr>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($produto['Cod_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($produto['Nome_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($produto['Preco_Prod']); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($produto['Quant_Estoque']); ?>
-                                            </th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($categoriaNome); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($marcaNome); ?></th>
-                                            <th class="fw-normal"><?php echo htmlspecialchars($fornecedorNome); ?></th>
-
-                                        <?php }
-                                } ?>
-                            </tbody>
-                            </thead>
-                        </table>
+                                            foreach ($categorias as $categoria) {
+                                                ?>
+                                                <tr>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Cod_Categoria']); ?>
+                                                    </th>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Nome_Categoria']); ?>
+                                                    </th>
+                                                    <th class="fw-normal"><?php echo htmlspecialchars($categoria['Desc_Categoria']); ?>
+                                                    </th>
+                                                <?php }
+                                        } ?>
+                                    </tbody>
+                                    </thead>
+                                </table>
                     </div>
                 </div>
 
@@ -410,12 +337,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                             $("#pdf").attr("hidden", false);
 
                             var pdf = document.getElementById('pdf');
-                            var tabelaProduto = pdf.cloneNode(true);
+                            var tabelaCategoria = pdf.cloneNode(true);
 
-                            if (tabelaProduto) {
+                            if (tabelaCategoria) {
                                 const { jsPDF } = window.jspdf;
                                 var doc = new jsPDF('a4');
-                                doc.html(tabelaProduto, {
+                                doc.html(tabelaCategoria, {
                                     callback: function (doc) {
                                         var totalPages = doc.internal.getNumberOfPages();
 
@@ -425,18 +352,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                                             i--;
                                             totalPages--;
                                         }
-                                        doc.save('Estoque.pdf');
-                                        window.location.href = '<?php if (isset($_GET['search'])) { ?> dashboard.php?search=<?php echo $_GET['search'];
-                                        } else { ?>dashboard.php<?php } ?>';
+                                        doc.save('Categorias.pdf');
+                                        window.location.href = '<?php if (isset($_GET['search'])) { ?> categoria.php?search=<?php echo $_GET['search'];
+                                        } else { ?>categoria.php<?php } ?>';
                                     },
                                     x: 5,
                                     y: 10,
-                                    width: 190,
+                                    width: 170,
                                     windowWidth: 650
                                 });
                                 $("#pdf").attr("hidden", true);
-                                tabelaProduto.style.fontSize = '';
-                                tabelaProduto.style.width = '';
+                                tabelaCategoria.style.fontSize = '';
+                                tabelaCategoria.style.width = '';
                             }
                         };
                     </script>
