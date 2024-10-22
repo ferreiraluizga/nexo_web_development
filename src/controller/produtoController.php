@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/model/produto.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/model/produto.php'; //Importação única do arquivo, se existente
 
 
 class ProdutoController{ // Classe públic 
@@ -10,12 +10,18 @@ class ProdutoController{ // Classe públic
         $this->produto = new produto(); //Acessando pelo this, com instância
         if(isset($_GET['acao'])){ //Get definido pela url caso seja igual a inserir efetua o método inserir
          if($_GET['acao'] == 'inserir'){
+        if(!empty($_POST['cod_forn']) && !empty($_POST['cod_marca']) && !empty($_POST['cod_categoria'])){
         $this->inserir();
         $this->categoria();
         $this->marca();
         $this->fornecedor();
         header('Location: ../dashboard.php');
-        }}
+        }
+        else{
+            header('Location: ../cadastrarproduto.php?erro=select');
+        }
+        }
+        }
         if(isset($_GET['acao'])){
          if($_GET['acao'] == 'atualizar'){ //Get definido pela url caso seja igual a atualizar efetua o método editar
             $this->atualizar($_GET['Cod_Prod']);
@@ -46,7 +52,13 @@ class ProdutoController{ // Classe públic
             echo "Nenhuma categoria selecionada.";
         }
         $this->produto->setNome_Prod($_POST['nome_prod']); //Seta as variaveis e pegam o input do formulário de acordo com o nome
+        $comma = ',';
+        if(strpos($_POST['preco'], $comma) !== false){
+        $this->produto->setPreco_Prod((double)str_replace(',', '.', $_POST['preco']));
+        }
+        else{
         $this->produto->setPreco_Prod((double)$_POST['preco']);
+        }
         $this->produto->setQuant_Estoque((int)$_POST['quantidade_prod']);
         $this->produto->setCod_Forn( (int)$cod_forn);
         $this->produto->setCod_Marca( (int) $cod_marca);
@@ -109,7 +121,13 @@ class ProdutoController{ // Classe públic
             echo "Nenhuma categoria selecionada.";
         }
         $this->produto->setNome_Prod($_POST['nome_prod']); //Seta as variaveis e pegam o input do formulário de acordo com o nome
+        $comma = ',';
+        if(strpos($_POST['preco'], $comma) !== false){
+        $this->produto->setPreco_Prod((double)str_replace(',', '.', $_POST['preco']));
+        }
+        else{
         $this->produto->setPreco_Prod((double)$_POST['preco']);
+        }
         $this->produto->setQuant_Estoque((int)$_POST['quantidade_prod']);
         $this->produto->setCod_Forn( (int)$cod_forn);
         $this->produto->setCod_Marca( (int) $cod_marca);
