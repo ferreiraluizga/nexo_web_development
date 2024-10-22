@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/categoriaController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/categoriaController.php'; //Importação única do arquivo, se existente
 ?>
 
 <!DOCTYPE html>
@@ -371,8 +371,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/categoriaController.p
                 }
                 ?>
 
-                <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-                <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+                <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
+                <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                     $(document).ready(function () {

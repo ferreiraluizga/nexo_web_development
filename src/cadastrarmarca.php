@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/marcaController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/marcaController.php'; //Importação única do arquivo, se existente
 
 ?>
 
@@ -225,8 +225,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/marcaController.php';
                         </div>
                     </div>
 
-                    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-                    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+                    <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
+                    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script>
                         $(document).ready(function () {

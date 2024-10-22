@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/fornecedorController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorController.php'; //Importação única do arquivo, se existente
 
 ?>
 
@@ -12,6 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/fornecedorController.
     <title>NEXO: Ligando você ao que mais importa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -225,7 +226,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/fornecedorController.
                                     <br>
                                     <p class="fs-5">Telefone:</p>
                                     <div class="input-group mb-3" name="fone_forn">
-                                        <input type="text" class="form-control" name="fone_forn">
+                                        <input type="text" class="form-control" name="fone_forn" id="fone_forn" data-mask="(00)00000-0000">
+                                        
                                     </div>
                                     <br>
                                     <p class="fs-5">Email:</p>
@@ -248,9 +250,21 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/fornecedorController.
                         </div>
                     </div>
 
-                    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-                    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
+                    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+                    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+                    
+                    <script>
+                       $(document).ready(function(){
+                        $(document).ready(function(){
+                            $('#cep').mask('00000-000');
+                            $('#fone_forn').mask('0000-0000');
+                            $('#celular').mask('00000-0000');
+                            $('#cpf').mask('000.000.000-00', {reverse: true});
+                            $('#rg').mask('00.000.000-00', {reverse: true});
+                        });
+                        });
+                    </script>
                     <script>
                         $(document).ready(function () {
                             $('[data-bs-toggle="collapse"]').on('click', function () {

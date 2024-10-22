@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController.php'; //Importação única do arquivo, se existente
 
 ?>
 
@@ -209,26 +209,35 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                         <div class="row">
                             <div class="col">
                                 <br>
+                                <?php 
+                                if(isset($_GET['erro']) && $_GET['erro'] == 'select'){
+                                ?> 
+                                <div class="alert alert-danger" role="alert">
+                                Selecione o fornecedor, marca e categoria!
+                                </div>
+                                <?php
+                                }
+                                ?>
                                 <form method="POST" action="controller/produtoController.php?acao=inserir">
                                     <!-- Endereço de onde os dados são enviados  -->
                                     <p class="fs-5">Nome:</p>
                                     <div class="input-group mb-3" name="nome_prod">
-                                        <input type="text" class="form-control" name="nome_prod">
+                                        <input type="text" class="form-control" name="nome_prod" required>
                                     </div>
                                     <br>
                                     <p class="fs-5">Preço:</p>
                                     <div class="input-group mb-3" name="preco">
-                                        <input type="text" class="form-control" name="preco">
+                                        <input type="text" class="form-control" name="preco" required>
                                     </div>
                                     <br>
                                     <p class="fs-5">Quantidade no estoque:</p>
                                     <div class="input-group mb-3" name="quantidade_prod">
-                                        <input type="text" class="form-control" name="quantidade_prod">
+                                        <input type="text" class="form-control" name="quantidade_prod" required>
                                     </div>
                                     <br>
                                     <p class="fs-5">Código do fornecedor:</p>
                                     <select class="form-select" aria-label="Default select example" name="cod_forn">
-                                        <option selected>Selecione o fornecedor</option>
+                                        <option disabled selected>Selecione o fornecedor</option>
                                         <?php
                                         $produtoController = new ProdutoController();
                                         $fornecedores = $produtoController->fornecedor();
@@ -245,7 +254,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                                     <br>
                                     <p class="fs-5">Código da marca:</p>
                                     <select class="form-select" aria-label="Default select example" name="cod_marca">
-                                        <option selected>Selecione a marca</option>
+                                        <option disabled selected>Selecione a marca</option>
                                         <?php
                                         $produtoController = new ProdutoController();
                                         $marcas = $produtoController->marca();
@@ -261,14 +270,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                                     </select>
                                     <br>
                                     <p class="fs-5">Código da categoria:</p>
-                                    <select name='cod_categoria' class="form-select">
-                                        <option selected>Selecione a categoria</option>
+                                    <select name='cod_categoria' class="form-select" required>
+                                        <option disabled selected>Selecione a categoria</option>
                                         <?php
                                         $produtoController = new ProdutoController();
                                         $categorias = $produtoController->categoria();
                                         foreach ($categorias as $categoria) {
                                             ?>
-                                            <option value="<?php echo htmlspecialchars($categoria['Cod_Categoria']); ?>">
+                                            <option value="<?php echo htmlspecialchars($categoria['Cod_Categoria']); ?> " >
                                                 <?php echo htmlspecialchars($categoria['Nome_Categoria']); ?>
                                             </option>
 
@@ -286,8 +295,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/controller/produtoController.php
                         </div>
                     </div>
 
-                    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-                    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+                    <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
+                    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script>
                         $(document).ready(function () {
