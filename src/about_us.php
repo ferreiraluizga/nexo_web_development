@@ -67,7 +67,8 @@
                 <div class="col-12">
                     <h1 class="fw-semibold mb-4">ligando você que mais importa</h1>
                     <p class="fs-6 text-justify">O NEXO conecta você às experiências e produtos que realmente fazem a
-                        diferença na sua vida. Nossa missão é facilitar o acesso ao que é essencial, criando laços que transformam o cotidiano.
+                        diferença na sua vida. Nossa missão é facilitar o acesso ao que é essencial, criando laços que
+                        transformam o cotidiano.
                     </p>
                 </div>
             </div>
@@ -93,19 +94,19 @@
             <div class="row">
                 <div class="col text-start">
                     <figure>
-                        <img src="https://placehold.co/280" class="img-fluid mb-2">
+                        <img src="" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
                         <figcaption>Gabriel Ferreira, CEO do NEXO</figcaption>
                     </figure>
                 </div>
                 <div class="col text-center">
                     <figure>
-                        <img src="https://placehold.co/280" class="img-fluid mb-2">
+                        <img src="img/rebeca.jpeg" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
                         <figcaption>Rebeca Mendes, CEO do NEXO</figcaption>
                     </figure>
                 </div>
                 <div class="col text-end">
                     <figure>
-                        <img src="https://placehold.co/280" class="img-fluid mb-2">
+                        <img src="" class="img-fluid mb-2 rounded-circle" width="200px" height="200px">
                         <figcaption>Vitor Iwamoto, CEO do NEXO</figcaption>
                     </figure>
                 </div>
@@ -115,9 +116,9 @@
         <section id="objectives" class="mb-5">
             <div class="row align-items-center">
                 <div class="col-6">
-                    <img src="https://placehold.co/500x300" class="img-fluid mb-2">
+                    <img src="img/objetivos.jpg" class="img-fluid mb-2" width="500px" height="300px">
                 </div>
-                <div class="col-6">
+                <div class="col-6 text-justify">
                     <h2 class="fw-semibold mb-4">Nossos Objetivos</h3>
                         <p>Com a criação deste site, buscamos aproximar ainda mais nossos clientes do NEXO, oferecendo
                             uma
@@ -144,7 +145,7 @@
                     <span class="fw-bold fs-5">Ligando você ao que mais importa</span><br>
                     <span class="fw-semibold" data-bs-theme="dark">
                         <a href="#"><i class="bi bi-geo-alt-fill text-white me-1"></i></a>
-                        Endereço fictício da empresa, 00000-000, São Paulo, SP</span>
+                        Av. Mal. Rondon, 2100 - 1 - Jardim Santa Cruz, Salto - SP, 13323-505</span>
                 </div>
                 <div class="col-3 text-end">
                     <a href="#"><i class="bi bi-instagram text-white fs-2 mx-3"></i></a>
@@ -156,9 +157,9 @@
                     <div class="container">
                         <div class="col d-flex flex-md-row navbar-nav justify-content-around">
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                            <a class="nav-link" aria-current="page" href="index.php">Sobre Nós</a>
-                            <a class="nav-link" aria-current="page" href="index.php">NEXOClub</a>
-                            <a class="nav-link" aria-current="page" href="index.php">Fale Conosco</a>
+                            <a class="nav-link" aria-current="page" href="about_us.php">Sobre Nós</a>
+                            <a class="nav-link" aria-current="page" href="nexo_club.php">NEXOClub</a>
+                            <a class="nav-link" aria-current="page" href="index.php#sac">Fale Conosco</a>
                         </div>
                     </div>
                 </nav>
@@ -171,16 +172,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
-    
+
     <!-- icone da janela -->
     <script>
-        $(document).ready(function() {
-            $('#navbarCollapseContent').on('shown.bs.collapse', function() {
+        $(document).ready(function () {
+            $('#navbarCollapseContent').on('shown.bs.collapse', function () {
                 $('#icon-menu').removeClass('bi-list').addClass('bi-x');
             });
-            $('#navbarCollapseContent').on('hidden.bs.collapse', function() {
+            $('#navbarCollapseContent').on('hidden.bs.collapse', function () {
                 $('#icon-menu').removeClass('bi-x').addClass('bi-list');
             });
         });

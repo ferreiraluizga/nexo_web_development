@@ -52,8 +52,8 @@
                     <a class="nav-link" aria-current="page" href="index.php#sac">Fale Conosco</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-1" id="icon-menu"></i>
                 </button>
                 <!-- mobile navbar-->
@@ -128,14 +128,17 @@
             <div class="row justify-content-center align-items-center text-justify mb-3">
                 <div class="col">
                     <h1 class="fw-semibold mb-3">NEXOClub</h1>
-                    <p>Para tornar cada compra ainda mais vantajosa, criamos o NEXOClub, nosso clube de fidelidade exclusivo. A cada compra realizada, você acumula pontos que podem ser trocados por descontos, produtos ou ofertas especiais.</p>
+                    <p>Para tornar cada compra ainda mais vantajosa, criamos o NEXOClub, nosso clube de fidelidade
+                        exclusivo. A cada compra realizada, você acumula pontos que podem ser trocados por descontos,
+                        produtos ou ofertas especiais.</p>
                     <div class="row justify-content-center align-items-stretch mb-4">
                         <div class="col-12 col-md-4 mb-3">
                             <div class="card mb-3 h-100 d-column">
                                 <img src="img/card-img_1.png" class="card-img-top" alt="...">
                                 <div class="card-body d-column flex-grow-1 text-center">
                                     <h5 class="card-title">Ofertas Semanais</h5>
-                                    <p class="card-text">O NEXO oferece ofertas semanais e descontos exclusivos aos participantes do NEXOClub</p>
+                                    <p class="card-text">O NEXO oferece ofertas semanais e descontos exclusivos aos
+                                        participantes do NEXOClub</p>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +147,8 @@
                                 <img src="img/card-img_2.png" class="card-img-top" alt="...">
                                 <div class="card-body d-column flex-grow-1 text-center">
                                     <h5 class="card-title">Catálogo em Primeira Mão</h5>
-                                    <p class="card-text">Visualização do catálogo de produtos do minimercado na palma da sua mão pelo aplicativo NEXOClub</p>
+                                    <p class="card-text">Visualização do catálogo de produtos do minimercado na palma da
+                                        sua mão pelo aplicativo NEXOClub</p>
                                 </div>
                             </div>
                         </div>
@@ -153,15 +157,18 @@
                                 <img src="img/card-img_3.png" class="card-img-top" alt="...">
                                 <div class="card-body d-column flex-grow-1 text-center">
                                     <h5 class="card-title">Notificações em seu Celular</h5>
-                                    <p class="card-text">Notificações sobre o mercado e atualizações constantes através do aplicativo</p>
+                                    <p class="card-text">Notificações sobre o mercado e atualizações constantes através
+                                        do aplicativo</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row align-items-center">
                         <div class="col-12 col-md-8 text-justify">
-                            <p>Descubra um mundo de vantagens com o NEXOClub! Baixe o aplicativo agora e aproveite ofertas
-                                exclusivas, descontos especiais e um catálogo completo na palma da sua mão. Não perca!</p>
+                            <p>Descubra um mundo de vantagens com o NEXOClub! Baixe o aplicativo agora e aproveite
+                                ofertas
+                                exclusivas, descontos especiais e um catálogo completo na palma da sua mão. Não perca!
+                            </p>
                         </div>
                         <div class="col-12 d-grid d-md-flex col-md-4 justify-content-center text-end">
                             <a href="nexo_club.php" class="btn btn-primary btn-lg fw-semibold">Cadastre-se Agora!</a>
@@ -175,15 +182,36 @@
         <section id="sac" class="d-column d-md-flex align-items-center p-5 rounded-4 text-white shadow-lg mb-5">
             <div class="col-12 col-md-6 pe-md-4">
                 <h2 class="text-center mb-4">Fale Conosco</h2>
-                <form class="container" id="sac" action="send_mail.php" onsubmit="alert('Mensagem enviada com sucesso!')" method="post">
+                <?php
+                if (isset($_GET['acao']) && $_GET['acao'] == 'sucesso') {
+                    ?>
+                    <br>
+                    <div class="alert alert-success" role="alert">
+                        Email enviado!
+                    </div>
+                    <?php
+                }
+                ?>
+                <?php
+                if (isset($_GET['acao']) && $_GET['acao'] == 'erro') {
+                    ?>
+                    <br>
+                    <div class="alert alert-danger" role="alert">
+                        Não foi possível enviar!
+                    </div>
+                    <?php
+                }
+                ?>
+                <form class="container" id="sac" action="send_mail.php" method="post">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Insira seu Nome Completo"
-                            required>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="Insira seu Nome Completo" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-Mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu E-Mail" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu E-Mail"
+                            required>
                     </div>
                     <div class="mb-4">
                         <label for="exampleFormControlTextarea1" class="form-label">Mensagem</label>
@@ -199,7 +227,7 @@
                 <h2 class="mb-2">Baixe o Aplicativo NEXOClub</h2>
                 <p class="mb-5">Acompanhe as ofertas do mercado na palma da sua mão! Leia o QR-Code com seu celular
                     Android, e entre em nosso clube de fidelidade ainda hoje.</p>
-                <img src="https://placehold.co/280" alt="" class="img-fluid shadow-lg">
+                <img src="img/nexoAppqrCode.png" alt="" class="img-fluid shadow-lg">
             </div>
         </section>
     </div>
@@ -217,7 +245,7 @@
                     <span class="fw-bold fs-5 mb-3">Ligando você ao que mais importa</span><br>
                     <span class="fw-semibold" data-bs-theme="dark">
                         <a href="#"><i class="bi bi-geo-alt-fill text-white me-1"></i></a>
-                        Endereço fictício da empresa, 00000-000, São Paulo, SP</span>
+                        Av. Mal. Rondon, 2100 - 1 - Jardim Santa Cruz, Salto - SP, 13323-505</span>
                 </div>
                 <div class="col-3 text-end">
                     <a href="#"><i class="bi bi-instagram text-white fs-2 mx-3"></i></a>
@@ -228,10 +256,10 @@
                 <nav class="fw-semibold mb-3 text-white">
                     <div class="container">
                         <div class="col d-flex flex-md-row navbar-nav justify-content-around">
-                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-                            <a class="nav-link" aria-current="page" href="#about">Sobre Nós</a>
-                            <a class="nav-link" aria-current="page" href="#club">NEXOClub</a>
-                            <a class="nav-link" aria-current="page" href="#sac">Fale Conosco</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link" aria-current="page" href="about_us.php">Sobre Nós</a>
+                            <a class="nav-link" aria-current="page" href="nexo_club.php">NEXOClub</a>
+                            <a class="nav-link" aria-current="page" href="index.php#sac">Fale Conosco</a>
                         </div>
                     </div>
                 </nav>
@@ -244,15 +272,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <!-- icone da janela -->
     <script>
-        $(document).ready(function() {
-            $('#navbarCollapseContent').on('shown.bs.collapse', function() {
+        $(document).ready(function () {
+            $('#navbarCollapseContent').on('shown.bs.collapse', function () {
                 $('#icon-menu').removeClass('bi-list').addClass('bi-x');
             });
-            $('#navbarCollapseContent').on('hidden.bs.collapse', function() {
+            $('#navbarCollapseContent').on('hidden.bs.collapse', function () {
                 $('#icon-menu').removeClass('bi-x').addClass('bi-list');
             });
         });

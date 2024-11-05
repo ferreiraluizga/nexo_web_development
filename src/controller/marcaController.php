@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/model/marca.php'; //Importação única do arquivo, se existente
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/model/marca.php'; //Importação única do arquivo, se existente
 
 
 class MarcaController{ // Classe públic 

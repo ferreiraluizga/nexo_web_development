@@ -18,10 +18,59 @@ body {
   margin-left: 17vw;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .responsive-div {
     margin-left: 0;
   }
+}
+
+.nome {
+  font-size: 16px; 
+}
+
+@media (max-width: 768px) {
+  .nome {
+      font-size: 10px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .nome {
+      font-size: 6px;
+  }
+}
+
+
+
+.img_profile {
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: 150px; /* Ajuste o tamanho conforme necessário */
+  border-radius: 50%; /* Torna a imagem circular */
+}
+
+.icone {
+  position: absolute; /* Para sobrepor a imagem */
+  top: 10px; /* Ajuste a posição conforme necessário */
+  left: 10px; /* Ajuste a posição conforme necessário */
+  font-size: 20px; /* Tamanho do ícone */
+  color: #fff; /* Cor do ícone */
+}
+.editar {
+  position: absolute;
+  top: 10px; /* Ajuste a posição conforme necessário */
+  right: 10px; /* Ajuste a posição conforme necessário */
+  padding: 5px; /* Ajusta o tamanho do botão */
+  width: 30px; /* Tamanho do botão */
+  height: 30px; /* Tamanho do botão */
+  border-radius: 50%; /* Botão circular */
+}
+
+.btn-imagem {
+  background: none; /* Remove o fundo do botão */
+  border: none; /* Remove a borda do botão */
+  padding: 0; /* Remove o padding */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  outline: none; /* Remove a marcação de foco */
 }
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)

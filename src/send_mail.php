@@ -1,9 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php'; // Carrega o PHPMailer via Composer
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/vendor/autoload.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['name'];
     $email = $_POST['email'];
@@ -12,18 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Instanciar o PHPMailer
     $mail = new PHPMailer(true);
     try {
+
         // Configurações do servidor
         $mail->isSMTP();                                         // Usar SMTP
-        $mail->Host = 'smtp.gmail.com';                   // Servidor SMTP
+        $mail->Host = 'smtp.gmail.com';                         // Servidor SMTP
         $mail->SMTPAuth = true;                                  // Ativar autenticação SMTP
-        $mail->Username = ''; // Usuário SMTP
-        $mail->Password = ''; // Senha SMTP
+        $mail->Username = 'minimercadonexo@gmail.com';          // Usuário SMTP
+        $mail->Password = 'jtusmrbvohsnykdp';                   // Senha SMTP
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      // Ativar criptografia TLS
         $mail->Port = 465;                                       // Porta TCP
-
+        echo "aa";
         // Destinatários
         $mail->setFrom($email, $nome);
-        $mail->addAddress('luiz.gabriel.lcf@gmail.com');              // Adiciona o destinatário
+        $mail->addAddress('minimercadonexo@gmail.com');         // Adiciona o destinatário
 
         // Conteúdo do e-mail
         $mail->isHTML(true);
@@ -31,11 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body = "Nome: $nome<br>E-mail: $email<br>Mensagem: $mensagem";
         $mail->AltBody = "Nome: $nome\nE-mail: $email\nMensagem: $mensagem"; // Alternativa para e-mails sem HTML
 
+        // Debug
+        $mail->SMTPDebug = 2; // Adicione esta linha
+
         // Enviar e-mail
         $mail->send();
-        header('Location: index.php');
+        header('Location: index.php?acao=sucesso#sac');
+        exit; // Sempre um exit após redirecionar
     } catch (Exception $e) {
-        echo "A mensagem não pôde ser enviada. Erro: {$mail->ErrorInfo}";
+        header('Location: index.php?acao=erro#sac');
     }
 }
 ?>

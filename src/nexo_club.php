@@ -11,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
     <title>NEXO: Ligando você ao que mais importa</title>
     <link rel="stylesheet" href="scss/main.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         #hero {
             background-image: url(img/nexoclub_background.png);
@@ -74,9 +74,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
                 <div class="col-12 col-lg-6">
                     <h2 class="fw-semibold mb-4">Sobre o Clube de Fidelidade</h2>
                     <p>No NEXO, queremos que cada compra seja ainda mais vantajosa. Por isso, criamos o NEXOClub, o
-                        nosso <strong>clube de fidelidade exclusivo</strong>. Aqui, cada compra realizada te aproxima de benefícios e
-                        recompensas especiais. A cada transação, você acumula <strong>pontos</strong> que podem ser trocados por
-                        <strong>descontos, produtos</strong> ou <strong>ofertas exclusivas</strong>.</p>
+                        nosso <strong>clube de fidelidade exclusivo</strong>. Aqui, cada compra realizada te aproxima de
+                        benefícios e
+                        recompensas especiais. A cada transação, você acumula <strong>pontos</strong> que podem ser
+                        trocados por
+                        <strong>descontos, produtos</strong> ou <strong>ofertas exclusivas</strong>.
+                    </p>
                 </div>
             </div>
             <div class="row text-justify">
@@ -122,24 +125,47 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
             class="d-column bg-primary d-md-flex align-items-center p-5 rounded-4 text-white shadow-lg mb-5">
             <div class="col-12 col-md-6 pe-md-4">
                 <h2 class="text-center mb-4">Cadastro NEXOClub</h2>
-                <form class="container" id="nexoClub" action="controller/clubeController.php?acao=cadastrar_clube" method="post">
+                <form class="container" id="nexoClub" action="controller/clubeController.php?acao=cadastrar_clube"
+                    method="post">
                     <div class="mb-3">
+                        <?php
+                        if (isset($_GET['status']) && $_GET['status'] == 'sucesso') {
+                            ?>
+                            <br>
+                            <div class="alert alert-success" role="alert">
+                                Cadastro feito com sucesso!
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if (isset($_GET['erro']) && $_GET['erro'] == 'cpf') {
+                            ?>
+                            <br>
+                            <div class="alert alert-danger" role="alert">
+                                Esse cpf já foi cadastrado!
+                            </div>
+                            <?php
+                        }
+                        ?>
                         <label for="nome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Insira seu Nome Completo" name="nome"
-                            required>
+                        <input type="text" class="form-control" id="nome" placeholder="Insira seu Nome Completo"
+                            name="nome" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" placeholder="Insira seu Telefone" name="telefone"
-                            required>
+                        <input type="text" class="form-control" id="telefone" placeholder="Insira seu Telefone"
+                            name="telefone" required>
                     </div>
                     <div class="mb-3">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="cpf" placeholder="Insira seu CPF" name="cpf" required>
+                        <input type="text" class="form-control" id="cpf" placeholder="Insira seu CPF" name="cpf"
+                            required>
                     </div>
                     <div class="mb-4">
                         <label for="email" class="form-label">E-Mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Insira seu E-Mail" name="email" required>
+                        <input type="email" class="form-control" id="email" placeholder="Insira seu E-Mail" name="email"
+                            required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-success mb-3">Cadastrar</button>
@@ -151,7 +177,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
                 <h2 class="mb-2">Baixe o Aplicativo NEXOClub</h2>
                 <p class="mb-5">Acompanhe as ofertas do mercado na palma da sua mão! Leia o QR-Code com seu celular
                     Android, e entre em nosso clube de fidelidade ainda hoje.</p>
-                <img src="https://placehold.co/280" alt="" class="img-fluid shadow-md">
+                <img src="img/nexoAppqrCode.png" alt="" class="img-fluid shadow-md">
             </div>
         </section>
     </div>
@@ -168,7 +194,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
                     <span class="fw-bold fs-5">Ligando você ao que mais importa</span><br>
                     <span class="fw-semibold" data-bs-theme="dark">
                         <a href="#"><i class="bi bi-geo-alt-fill text-white me-1"></i></a>
-                        Endereço fictício da empresa, 00000-000, São Paulo, SP</span>
+                        Av. Mal. Rondon, 2100 - 1 - Jardim Santa Cruz, Salto - SP, 13323-505</span>
                 </div>
                 <div class="col-3 text-end">
                     <a href="#"><i class="bi bi-instagram text-white fs-2 mx-3"></i></a>
@@ -180,9 +206,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
                     <div class="container">
                         <div class="col d-flex flex-md-row navbar-nav justify-content-around">
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                            <a class="nav-link" aria-current="page" href="index.php">Sobre Nós</a>
-                            <a class="nav-link" aria-current="page" href="index.php">NEXOClub</a>
-                            <a class="nav-link" aria-current="page" href="index.php">Fale Conosco</a>
+                            <a class="nav-link" aria-current="page" href="about_us.php">Sobre Nós</a>
+                            <a class="nav-link" aria-current="page" href="nexo_club.php">NEXOClub</a>
+                            <a class="nav-link" aria-current="page" href="index.php#sac">Fale Conosco</a>
                         </div>
                     </div>
                 </nav>
@@ -195,8 +221,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/clubeController.p
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $('#cpf').mask('000.000.000-00');
+                $('#telefone').mask('(00) 00000-0000');
+            });
+        });
+    </script>
 </body>
 
 </html>

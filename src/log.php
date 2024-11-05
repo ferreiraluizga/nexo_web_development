@@ -23,6 +23,16 @@
                 <div class="card shadow p-4">
                     <div class="card-body">
                         <h2 class="text-center mb-4">Login</h2>
+                        <br>
+                                <?php 
+                                if(isset($_GET['erro']) && $_GET['erro'] == 'login'){
+                                ?> 
+                                <div class="alert alert-danger" role="alert">
+                                Usuário ou senha incorretos!
+                                </div>
+                                <?php
+                                }
+                                ?>
                         <form action="verificLogin.php" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -32,9 +42,7 @@
                                 <label for="password" class="form-label">Senha</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha">
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <a href="#">Esqueceu sua senha?</a>
-                            </div>
+                            <br>
                             <button type="submit" name="log" class="btn btn-primary w-100">Entrar</button>
                         </form>
                     </div>

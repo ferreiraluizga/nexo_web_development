@@ -1,5 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorController.php'; //Importação única do arquivo, se existente
+session_start();
+header('Content-Type: text/html; charset=utf-8');
+
+ini_set('default_charset', 'UTF-8');
+
+if(isset($_SESSION['cod_func']) && isset($_SESSION['email']) && isset($_SESSION['nome'])){ 
+$primeiroNome = explode(' ', $_SESSION['nome'])[0]; 
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>NEXO: Ligando você ao que mais importa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,14 +23,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="scss/main.css">
-</head>
-<body style="background-color: #F2F2F2;">
+</head><body style="background-color: #F2F2F2;">
     <header class="sticky-top mb-0 d-xl-none">
         <nav class="navbar navbar-expand-lg bg-primary py-3 shadow-lg" data-bs-theme="dark">
             <div class="container align-items-center fw-semibold">
                 <div class="navbar-nav col-4 d-none d-lg-flex justify-content-around align-items-center">
-                    <a class="nav-link" aria-current="page" href="dashboard.php">Produtos</a>
-                    <a class="nav-link active" aria-current="page" href="fornecedor.php">Fornecedores</a>
+                    <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
+                    <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
                 </div>
                 <div class="col-4 text-center">
                     <a class="navbar-brand" href="index.php">
@@ -34,47 +41,41 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
                     <a class="nav-link " aria-current="page" href="categoira.php">Categorias</a>
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://via.placeholder.com/40" alt="profile" width="40" height="40"
-                            class="rounded-circle me-2">
-                        <strong>User</strong>
+                        <?php echo '<img src = "data:image/jpeg;base64,'.base64_encode($_SESSION['img_func']).'"  width = "40px" height ="40px" class="rounded-circle me-2"/>'; ?>
+                        <strong  class="nome"><?=$primeiroNome?></strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow " width="30" height="30"
                         aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Configurações</a></li>
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="logperfil.php">Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
-                <div class="dropdown navbar-toggler" style="margin-top: 1vw; margin-left: 10vw;" width="30" height="30">
+                <div class="dropdown navbar-toggler" style="margin-top: 1vw; margin-left: 4vw;" width="25" height="25">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://via.placeholder.com/40" alt="profile" width="40" height="40"
-                            class="rounded-circle me-2">
-                        <strong style="font-size: 0.8rem">User</strong>
+                        <?php echo '<img src = "data:image/jpeg;base64,'.base64_encode($_SESSION['img_func']).'"  width = "40px" height ="40px" class="rounded-circle me-2"/>'; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow " width="30" height="30"
                         aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Configurações</a></li>
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="logperfil.php">Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-1" id="icon-menu"></i>
-                    <i class="bi bi-x text-white fs-1" id="icon-close"></i>
                 </button>
                 <div class="collapse mt-3" id="navbarCollapseContent">
                     <div class="navbar-nav col text-center text-sm-start">
-                        <a class="nav-link" aria-current="page" href="dashboard.php">Produtos</a>
-                        <a class="nav-link active" aria-current="page" href="fornecedor.php">Fornecedores</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php">Produtos</a>
+                        <a class="nav-link " aria-current="page" href="fornecedor.php">Fornecedores</a>
                         <a class="nav-link" aria-current="page" href="marca.php">Marcas</a>
                         <a class="nav-link" aria-current="page" href="categoria.php">Categorias</a>
                     </div>
@@ -95,17 +96,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
                 <div class="dropdown" style="margin-top: 1vw; margin-left: 0.5vw;">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://via.placeholder.com/40" alt="profile" width="40" height="40"
-                            class="rounded-circle me-2">
-                        <strong>User</strong>
+                        <?php echo '<img src = "data:image/jpeg;base64,'.base64_encode($_SESSION['img_func']).'"  width = "40px" height ="40px" class="rounded-circle me-2"/>'; ?>
+                        <strong  class="nome"><?=$primeiroNome?></strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Configurações</a></li>
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="logperfil.php">Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
                 <ul class="nav nav-pills flex-column mb-auto" style="margin-top: 1vw; ">
@@ -169,7 +168,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
             </aside>
         </div>
 
-        <!-- Content -->
 
         <div class="responsive-div p-4 w-100">
             <div class="row mb-3" style="margin-left: 0.2vw; margin-top: 0.8vw;">
@@ -197,17 +195,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
                             <div class="col d-flex justify-content-end">
                                 <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75"
                                     href="cadastrarfornecedor.php">Inserir registro</a>
-                                <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75" href="<?php if (isset($_GET['search'])) { ?> fornecedor.php?acao=pdf&&search=<?php echo $_GET['search'];
-                                } else { ?>fornecedor.php?acao=pdf<?php } ?>">Exportar
+                                <a class="btn btn-primary rounded-3 me-4 fw-light opacity-75" href="<?php if (isset($_GET['search'])) { ?> pdf.php?pdf=fornecedor&&search=<?php echo $_GET['search'];
+                                } else { ?>pdf.php?pdf=fornecedor<?php } ?>">Exportar
                                     PDF</a>
                             </div>
                         </div>
                         <br>
                     </div>
-
+                                
                     <!-- aqui coloca o conteúdo dos cards :) -->
                     <div class="tabelaFornecedor" id="tabelaFornecedor">
                         <div class="card-body">
+                        <?php 
+                                if(isset($_GET['erro']) && $_GET['erro'] == 'digitos'){
+                                ?> 
+                                <br>
+                                <div class="alert alert-danger" role="alert">
+                                    Insira o telefone e o cnpj corretamente!
+                                </div>
+                                <?php
+                                }
+                                ?>
                             <div class="table-responsive">
                                 <table class="table ">
                                     <thead>
@@ -232,7 +240,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
                                                 <tr>
                                                     <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Forn']); ?>
                                                     </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Fantasia']); ?>
+                                                    <th class="fw-normal"><?php echo htmlentities($lista['Nome_Fantasia'], ENT_QUOTES, "UTF-8"); ?>
                                                     </th>
                                                     <th class="fw-normal"><?php echo htmlspecialchars($lista['CNPJ_Forn']); ?>
                                                     </th>
@@ -295,122 +303,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
 
 
 
-
-                <div class="pdf" id="pdf" hidden>
-                    <p><strong>NEXO</strong></p>
-                    <p>Fornecedores</p>
-                    <div class="card-body">
-                    <table class="table ">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Nome Fantasia</th>
-                                            <th scope="col">Cnpj</th>
-                                            <th scope="col">Telefone</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Contato</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        if (isset($_GET['search'])) {
-                                            $search = $_GET['search'];
-                                            $fornecedorController = new FornecedorController();
-                                            $listas = $fornecedorController->buscar($search);
-                                            foreach ($listas as $lista) {
-                                                ?>
-                                                <tr>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Cod_Forn']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Fantasia']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['CNPJ_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Fone_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Email_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($lista['Nome_Resp']); ?>
-                                                    </th>
-
-                                                <?php }
-                                        } else {
-
-                                            $fornecedorController = new FornecedorController();
-                                            $fornecedores = $fornecedorController->listar();
-
-                                            foreach ($fornecedores as $fornecedor) {
-                                                ?>
-                                                <tr>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['Cod_Forn']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['Nome_Fantasia']); ?>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['CNPJ_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['Fone_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['Email_Forn']); ?>
-                                                    </th>
-                                                    </th>
-                                                    <th class="fw-normal"><?php echo htmlspecialchars($fornecedor['Nome_Resp']); ?>
-                                                    </th>
-                                                <?php }
-                                        } ?>
-                                    </tbody>
-                                    </thead>
-                                </table>
-                    </div>
-                </div>
-
-
-                <?php
-                if (isset($_GET['acao']) && $_GET['acao'] == 'pdf') {
-                    ?>
-                    <script>
-                        window.onload = function () {
-                            $("#pdf").attr("hidden", false);
-
-                            var pdf = document.getElementById('pdf');
-                            var tabelaFornecedor = pdf.cloneNode(true);
-
-                            if (tabelaFornecedor) {
-                                const { jsPDF } = window.jspdf;
-                                var doc = new jsPDF('a4');
-                                doc.html(tabelaFornecedor, {
-                                    callback: function (doc) {
-                                        var totalPages = doc.internal.getNumberOfPages();
-
-                                        for (var i = 2; i <= totalPages; i++) {
-                                            doc.setPage(i);
-                                            doc.deletePage(i);
-                                            i--;
-                                            totalPages--;
-                                        }
-                                        doc.save('Fornecedores.pdf');
-                                        window.location.href = '<?php if (isset($_GET['search'])) { ?> fornecedor.php?search=<?php echo $_GET['search'];
-                                        } else { ?>fornecedor.php<?php } ?>';
-                                    },
-                                    x: 5,
-                                    y: 10,
-                                    width: 170,
-                                    windowWidth: 650
-                                });
-                                $("#pdf").attr("hidden", true);
-                                tabelaFornecedor.style.fontSize = '';
-                                tabelaFornecedor.style.width = '';
-                            }
-                        };
-                    </script>
-                    <?php
-                }
-                ?>
-
                 <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
                 <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -444,4 +336,37 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorControl
     </div>
 </body>
 
-</html>
+</html> 
+<?php } else {
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>NEXO: Ligando você ao que mais importa</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="scss/main.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container d-flex  
+         align-items-center  
+         justify-content-center  
+         min-vh-100">
+            Apenas funcionários podem acessar! <a href="index.php" style="margin-left: 0.2vw;"><strong>Voltar para home</strong></a></h1>
+            <br>
+        </div>
+    </body>
+
+    </html>
+
+    <?php
+} ?>
