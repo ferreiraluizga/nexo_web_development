@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/fpdf186/fpdf.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/vendor/fpdf186/fpdf.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/produtoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/categoriaController.php'; //Importação única do arquivo, se existente
 require_once $_SERVER['DOCUMENT_ROOT'] . '/nexo/src/controller/fornecedorController.php';
